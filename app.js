@@ -28,41 +28,45 @@ function hourlySalesIns(min, max, avgCookie){
     hourlySales[i] = getRandomInt(min, max) * avgCookie;
     hourlySales[i] = Math.floor(hourlySales[i]);
   }
+  return hourlySales;
 }
 
 const seattle = {
   location: 'Seattle',
-  salesIns: hourlySalesIns(23, 65, 6.3),
-  hourlySales: hourlySales,
+  min: 20,
+  max: 30,
+  avgCookie: 5,
+  salesIns: function(){
+    return hourlySalesIns(this.max, this.min, this.avgCookie);
+  },
 };
-
-/* const seattle = {
-  location: 'Seattle',
-  min: 23,
-  max: 65,
-  avgCookie: 6.3,
-  salesIns: hourlySalesIns(min, max, avgCookie),
-  hourlySales: hourlySales,
-}; */
-
-/* const tokyo = {
+seattle.hourlySales = Array.from(seattle.salesIns());
+const tokyo = {
   location: 'Tokyo',
-  Sales: [4, 2, 7, 4, 5, 2, 3, 4, 2, 6, 7, 12, 4, 21],
-  hourlySales: [4, 2, 7, 4, 5, 2, 3, 4, 2, 6, 7, 12, 4, 21],
+  min: 20,
+  max: 40,
+  avgCookie: 5,
+  salesIns: function(){
+    return hourlySalesIns(this.max, this.min, this.avgCookie);
+  },
 };
-console.log(tokyo);
+tokyo.hourlySales = Array.from(tokyo.salesIns());
 
 const amman = {
   location: 'Amman',
-  Sales: [4, 2, 7, 4, 5, 2, 3, 4, 2, 6, 7, 12, 4, 21],
-  hourlySales: [4, 2, 7, 4, 5, 2, 3, 4, 2, 6, 7, 12, 4, 21],
-}; */
-
+  min: 10,
+  max: 30,
+  avgCookie: 5,
+  salesIns: function(){
+    return hourlySalesIns(this.max, this.min, this.avgCookie);
+  },
+};
+amman.hourlySales = Array.from(amman.salesIns());
 const storeContainerElem = document.getElementById('store-container');
 
 renderCookieStand(seattle);
-/* renderCookieStand(tokyo);
-renderCookieStand(amman); */
+renderCookieStand(tokyo);
+renderCookieStand(amman);
 
 function renderCookieStand(cookieStand) {
 

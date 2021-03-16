@@ -42,7 +42,7 @@ function CookieProfile(name, min, max,avgCookie){
 
 
 
-//CookieProfile.prototype.render = function () {
+CookieProfile.prototype.render = function () {
 
 const profileContainer = document.getElementById('store-container');
 
@@ -52,35 +52,31 @@ const thead = createChild('thead', table);
 
 const tr = createChild('tr', thead);
 
-
 createChild('th', tr);
 for (let i=0; i<timeSlots.length; i++){
   createChild('th', tr, timeSlots[i]);
 }
-createChild('th', tr, 'Daily Location Total');
-
-//};
-
 CookieProfile.prototype.render = function () {
 
   const profileContainer = document.getElementById('store-container');
 
   const table = createChild('table', profileContainer);
 
-  const tr = createChild('tr', table, CookieProfile.name);
+  const tr = createChild('tr', table);
+
+  createChild('th', tr, this.name);
 
   for (let i=0; i<timeSlots.length; i++){
-    createChild('td', tr, hourlySales[i]);
+    createChild('td', tr, this.hourlySales[i]);
   }
-  //createChild('th', tr, 'Daily Location Total');
+  createChild('th', tr, 'Daily Location Total');
+};
+createChild('th', tr, 'Daily Location Total');
+
 };
 
 
-//const article = createChild('article', profileContainer);
 
-//createChild('h2', article, this.name);
-
-//createChild('p', article, this.breed);
 
 
 let seattle = new CookieProfile('Seattle', 20, 30, 6.3);
