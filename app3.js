@@ -38,7 +38,7 @@ function CookieProfile(name, min, max,avgCookie){
   this.max = max;
   this.avgCookie = avgCookie;
   this.hourlySales = Array.from(hourlySalesIns(min, max, avgCookie));
-  
+
   //calculate hourly sales
   let total = 0;
   for (let i = 0; i < this.hourlySales.length; i += 1) {
@@ -85,15 +85,17 @@ const tfoot = createChild('tfoot', table);
 const tr1 = createChild('tr', tfoot);
 
 createChild('th', tr1, 'Totals');
-
+let cookiesTotal=0;
 for (let i=0; i<timeSlots.length; i++){
-  let hourlyTotal = 0;
-  hourlyTotal = seattle.hourlySales[i]+tokyo.hourlySales[i]+dubai.hourlySales[i]+paris.hourlySales[i]+lima.hourlySales[i];
-  createChild('th', tr1, hourlyTotal);
-  //let cookiesTotal =+ hourlyTotal;
   
+  let hourlyTotal = seattle.hourlySales[i]+tokyo.hourlySales[i]+dubai.hourlySales[i]+paris.hourlySales[i]+lima.hourlySales[i];
+  createChild('th', tr1, hourlyTotal);
+  cookiesTotal = cookiesTotal+hourlyTotal;
+  if (i===timeSlots.length-1){
+    createChild('th', tr1, cookiesTotal);
+  }
 }
-//createChild('th', tr1, cookiesTotal);
+
 
 
 
