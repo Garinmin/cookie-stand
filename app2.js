@@ -18,7 +18,7 @@ const timeSlots = [
 function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
+  return Math.floor(Math.random() * (max - min) + min);
 }
 
 var hourlySales = new Array();
@@ -31,84 +31,106 @@ function hourlySalesIns(min, max, avgCookie){
   return hourlySales;
 }
 
-//function Create object
-function CookieProfile(name, min, max,avgCookie){
+
+const allKittens = [];
+
+const table = document.getElementById('kitten-chart');
+
+
+function Kitten(name, breed, interests, coatColor) {
   this.name = name;
-  this.min = min;
-  this.max = max;
-  this.avgCookie = avgCookie;
-  this.hourlySales = Array.from(hourlySalesIns(min, max, avgCookie));
+  this.breed = breed || 'unknown';
+  this.interests = interests || 'none';
+  this.coatColor = coatColor || 'not specified';
+
+
+  allKittens.push(this);
 }
 
+Kitten.prototype.render = function () {
+  const row = createChild('tr', table);
+  const propertyNames = ['name', 'breed', 'interests', 'coatColor'];
+  for (let i = 0; i < propertyNames.length; i++) {
+    const currentPropertyName = propertyNames[i];
 
-
-//CookieProfile.prototype.render = function () {
-
-const profileContainer = document.getElementById('store-container');
-
-const table = createChild('table', profileContainer);
-
-const thead = createChild('thead', table);
-
-const tr = createChild('tr', thead);
-
-
-createChild('th', tr);
-for (let i=0; i<timeSlots.length; i++){
-  createChild('th', tr, timeSlots[i]);
-}
-createChild('th', tr, 'Daily Location Total');
-
-//};
-
-CookieProfile.prototype.render = function () {
-
-  const profileContainer = document.getElementById('store-container');
-
-  const table = createChild('table', profileContainer);
-
-  const tr = createChild('tr', table, CookieProfile.name);
-
-  for (let i=0; i<timeSlots.length; i++){
-    createChild('td', tr, hourlySales[i]);
+    // common use for bracket notation instead of dot notation
+    const currentPropertyValue = this[currentPropertyName];
+    createChild('td', row, currentPropertyValue);
   }
-  //createChild('th', tr, 'Daily Location Total');
-};
 
+}
 
-//const article = createChild('article', profileContainer);
-
-//createChild('h2', article, this.name);
-
-//createChild('p', article, this.breed);
-
-
-let seattle = new CookieProfile('Seattle', 20, 30, 6.3);
-let tokio = new CookieProfile('Tokio', 3, 24, 1.2);
-let dubai = new CookieProfile('Dubai', 11, 38, 3.7);
-let paris = new CookieProfile('Paris', 20, 38, 2.3);
-let lima = new CookieProfile('Lima', 2, 16, 4.6);
-
-seattle.render();
-tokio.render();
-dubai.render();
-paris.render();
-lima.render();
-
-// function Create Child
 function createChild(tag, parent, text) {
-
   const child = document.createElement(tag);
-
   parent.appendChild(child);
-
   if (text !== undefined) {
     child.textContent = text;
   }
-
   return child;
+}
+
+function createHeaderRow() {
+
+  const row = createChild('tr', table);
+
+  const columnNames = ['name', 'breed', 'interests', 'coatColor'];
+
+  for (let i = 0; i < columnNames.length; i++) {
+    createChild('th', row, columnNames[i]);
+  }
+}
+
+function createFooterRow() {
+
+  const row = createChild('tr', table);
+
+  const th = createChild('th', row, 'Kittens to Adopt ' + allKittens.length);
+  th.setAttribute('colspan', '7');
 
 }
 
-//calculate total
+function renderKittens() {
+  for (let i = 0; i < allKittens.length; i++) {
+    allKittens[i].render();
+  }
+}
 
+
+
+// listen for submits
+
+function addKittenHandler(event) {
+  event.preventDefault();
+
+  const name = event.target.name.value;
+  const breed = event.target.breed.value;
+  const coatColor = event.target.coatColor.value;
+  let interests = event.target.interests.value;
+  // interests = interests.split(',');
+  
+  const newKitten = new Kitten(name, breed, interests, coatColor);
+
+  table.innerHTML = '';
+
+  renderTable();
+
+  event.target.reset();
+
+}
+
+function renderTable() {
+
+  createHeaderRow();
+
+  renderKittens();
+
+  createFooterRow();
+}
+
+// wire up event listener
+const addKittenForm = document.getElementById('add-kitten-form');
+addKittenForm.addEventListener('submit', addKittenHandler);
+
+
+
+renderTable();
