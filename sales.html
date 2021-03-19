@@ -1,58 +1,58 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-  <link rel="stylesheet" href="css/reset.css">
-  <link rel="stylesheet" href="css/style.css">
-  <title>Salmon Cookies Sales</title>
-</head>
+    <head>
+        <link rel="stylesheet" href="css/reset.css">
+        <link rel="stylesheet" href="css/style.css">
+        <title>Salmon Cookies Sales</title>
+      </head>
 
 <body>
-  <header>
-    <h1>Salmon Cookies Sales</h1>
-      <img src="img/salmon.png" alt="salmon">
-  </header>
-  <div id="store-container">
-    <section>
-      <h2></h2>
-      <table>
-        <thead>
-            <tr>
-                <th scope="col">time1</th>
-                ...
-                <th scope="col">time14</th>
-                <th scope="col">Daily Location Total</th>
-            </tr>
-        </thead>
-            <tr>
-                <th scope="row">Seattle</th>
-                <td>hourlySalesSeattle1</td>
-                ...
-                <td>hourlySalesSeattle14</td>
-                <td>dailySalesSeattle</td>
-            </tr>
-            ... Tokio
-            ... Dubai
-            ... Paris
-            ... Lima
-        <tfoot>
-            <tr>
-                <th scope="row">Totals</th>
-                <td>hourlySalesTotal1</td>
-                ...
-                <td>hourlySalesTotal14</td>
-                <td>dailySalesTotal</td>
-            </tr>
-        </tfoot>
-      </table>
-                
-    </section>
-  </div>
-  <img src="img/frosted-cookie.jpg" alt="cookie">
+    <header>
+        <h1>Salmon Cookies Sales</h1>
+          <img src="img/salmon.png" alt="salmon">
+    </header>
+
+  <main class="">
+    <hr class="" />
+    <h2 class="">Add a Location</h2>
+    <form id="add-location-form">
+
+      <fieldset class="">
+        <label class="">
+          City
+          <input name="name" type="text" class="" required />
+        </label>
+        <label class="">Minimum customers per hour
+          <input name="min" type="text" class="" />
+        </label>
+        <label class="">Maximum customers per hour
+          <input name="max" type="text" class="" />
+        </label>
+        <label>Average cookies sold per hour
+          <input name="avgCookie" type="text" class="" />
+        </label>
+      </fieldset>
+    
+      <button type="submit" class="">Submit</button>
+
+    </form>
+
+    <hr class="" />
+
+    <h2 class="text-2xl">Cookie Sales</h2>
+
+    <table id="cookie-chart" class="border border-black">
+
+    </table>
+  </main>
+
+    <img src="img/frosted-cookie.jpg" alt="cookie">
     <a href="index.html">
       <button>Home</button>
     </a>
-    <script src="app3.js"></script>
+
+  <script src="app.js"></script>
 </body>
 
 </html>
