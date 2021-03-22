@@ -15,6 +15,7 @@ header {
 
 h1 {
     margin: 50px;
+    font-style: Cha;
     font-weight: bold;
     font-size: 70px;
     border: 3px solid rgb(0, 110, 255);
@@ -27,6 +28,10 @@ header img {
     width: 50%;
     margin: 20px;
     
+}
+
+.formLine {
+    padding-bottom: 50px;
 }
 
 .button {
@@ -57,7 +62,7 @@ button:hover{
 
 main {
     width: 960px;
-    align-items: center;
+    
     margin: 20px auto;
 }
 
@@ -78,6 +83,8 @@ h2 {
     margin: 20px;
     font-weight: bold;
     font-size: 25px;
+    text-align: center;
+    font-family: 'Chango', cursive;
 }
 
 #address {
@@ -120,19 +127,40 @@ td {
 table {
   border-collapse: collapse;
   width: 100%;
+  text-align: center;
+  background-color: gold;
+  position: relative;
+  left: -100px;
 
 }
 
 th {
   font-style: bold;
   text-transform: capitalize;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: goldenrod;
 }
 
 tr:nth-child(even){background-color: #f2f2f2;}
 
 tr:hover {background-color: #ddd;}
 
+td {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
 hr {
   margin-top: 40px;
   margin-bottom: 40px;
+}
+
+footer {
+    margin-top: 50px;
+    text-align: center;
+    
+}
+
+.lastIMG{
+    display: block;
+    margin-left: 150px;
 }
